@@ -7,24 +7,46 @@
 </head>
 <body>
     <h1 style="color: black;"><u><b>Primeiras Cidades</b></u></h1>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>País</th>
-        <th>População</th>
-        <th>Distrito</th>
-    </tr>
 
-    @foreach ($cities as $city)
-    <tr>
-        <td>{{ $city->ID }}</td>
-        <td>{{ $city->name }}<td>
-        <td>{{ $city->CountryCode }}<td>
-        <td>{{ number_format($city->Population, 0, ',', '.') }}<td>
-        <td>{{ $city->District }}<td>
-    </tr>
-    @endforeach
+<style>
+    table{
+        widht: 100%;
+        border-collapse:collapse;
+    }
+
+    th, td{
+        border:1px solid #999;
+        padding:8px;
+        text-aling: left;
+    }
+
+    th{
+        background-color:#e5e7eb;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>País</th>
+            <th>População</th>
+            <th>Distrito</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach ($cities as $city)
+        <tr>
+            <td>{{ $city->ID }}</td>
+            <td>{{ $city->name }}</td>
+            <td>{{ $city->CountryCode }}</td>
+            <td>{{ number_format($city->Population, 0, ',', '.') }}</td>
+            <td>{{ $city->District }}</td>
+        </tr>
+        @endforeach
+    </tbody>
 </table>
 
 </body>

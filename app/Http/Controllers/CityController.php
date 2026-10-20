@@ -11,4 +11,28 @@ class CityController extends Controller
         $cities = DB::select("SELECT ID, name, CountryCode, Population, District FROM city LIMIT 10");
         return view('cities.index', compact('cities'));
     }
+
+    public function byCountry($codigoPaís){
+        $cities = DB::select("SELECT ID, name, CountryCode, Population, District FROM city WHERE CountryCode = ? LIMIT 10", [$codigoPaís]);
+        return view('cities.byCountry', compact('cities','codigoPaís'));
+    }
+
+    public function create(){
+        return view('cities.create');
+    }
+
+    public function store(Request $request)
+    {
+        DB::insert('INSERT INTO city (Name, CountryCode, District, Population)
+            VALUES (?,?,?,?)',[
+            $request->input('Name'),
+            $request->input('CountryCode'),
+            $request->input('District'),
+            $request->input('Population')
+        ]);
+
+        return redirect('/cities/create');
+    }
+
+
 }
